@@ -1,3 +1,5 @@
+from pathlib import Path
+
 class Transicao:
     def __init__(self, valores, estado_dest):
         self.valores        = valores
@@ -18,7 +20,7 @@ class Alfabeto:
         self.F = estado_final #Nome do estado final (mesmo maluco do nome_estados)
 
 
-input_file      = open("c:/Users/arthu/Desktop/TP FTC/TPIII-FTC/init.txt", "r")
+input_file      = open(Path('init.txt'), "r")
 estados_input   = input_file.readline().replace("Q: ", "").replace("\n", "").split(" ")
 estado_inicial  = input_file.readline().replace("I: ", "").replace("\n", "")
 
