@@ -1,5 +1,5 @@
 Q: a b c d e
-S: a7b8
+S: 01
 I: a
 F: a d
 a -> b | 1
