@@ -197,10 +197,10 @@ def test_afn(file_name):
         afn.verificaCasosDeTeste()
 
 def __main__():
-    testAFD('init.txt')
+    testAFD('testes/init.txt')
 
-    test_afd_multiple_alphabet('alfabeto.txt')
+    test_afd_multiple_alphabet('testes/alfabeto.txt')
 
-    test_afn('afn2.txt')
+    test_afn('testes/afn.txt')
 
 __main__()
