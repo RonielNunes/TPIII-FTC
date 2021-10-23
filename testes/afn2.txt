@@ -1,17 +1,18 @@
-Q: 1 2 2q 3 3q
-S: 01
-I: 1
-F: 2 3
-1 -> 2 | \
-2 -> 2q | 0
-2q -> 2 | 0
-1 -> 3 | 1
-3 -> 3q | 1
-3q -> 3 | 1
+Q: q0 q1 q2 qf
+S: ab
+I: q0
+F: qf
+q0 -> q0 | a
+q0 -> q1 | a
+q0 -> q2 | /
+q1 -> qf | a
+q2 -> q3 | b
+qf -> qf | a b
 ---
-011100011
-00111
-00011
+ab
+aab
+abbea
+baaabab
 
-00111
-0110
+aaaabbba
+abababab

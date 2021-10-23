@@ -186,17 +186,21 @@ class AFN(AFD_ALPHABET):
                             flag_estado_atual_para_ele_mesmo = False
                             # Percorre as transições do estado atual
                             for transicao_index in range(len(estado.transicoes)):
-
+                                #tratamento de lambda
+                                for valor_index in range(len(estado.transicoes[transicao_index].valores)): #vetor para percorrer os valores que estão no vetor de valores
+                                    if(estado.transicoes[transicao_index].valores[valor_index] == '/'): #Verificação para ver se há lambdas na transicao
+                                        estado_atual = estado.transicoes[transicao_index].estado_dest #vai para o estado de destino com transição lambda
+                                        break
                                 # Se encontra uma transição com o caracter do estado atual, troca de estado atual
                                 if (caso[valor] in estado.transicoes[transicao_index].valores):
                                     if (estado_atual == estado.transicoes[transicao_index].estado_dest):
                                         flag_estado_atual_para_ele_mesmo = True
                                         continue
+                                    
                                     else:
                                         estado_atual = estado.transicoes[transicao_index].estado_dest
-                                        break
-
-                                # Se no final das transições não encontrar nenhuma transição com o mesmo valor, o caso deu errado
+                                        break                                
+                                # Se no final das transições não encontrar nenhuma transição com o mesmo valor e nem lambda, o caso deu errado
                                 if(transicao_index == len(estado.transicoes) - 1 and flag_estado_atual_para_ele_mesmo == False):
                                     #flag_erro = True
                                     cont_erro += 1
