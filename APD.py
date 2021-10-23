@@ -1,4 +1,5 @@
 from pathlib import Path
+
 class Transicao:
     def __init__(self, valores, estado_dest):
         self.valores     = valores # Array de Pilha

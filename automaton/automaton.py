@@ -224,3 +224,9 @@ class AFN(AFD_ALPHABET):
                 print(bcolors.FAIL + "X" + bcolors.RESET)
             else:
                 print(bcolors.OKGREEN + "OK" + bcolors.RESET)
+
+class ValoresPilha:
+    def __init__(self, le, desempilha, empilha):
+        self.le             = le
+        self.desempilha     = desempilha
+        self.empilha        = empilha
