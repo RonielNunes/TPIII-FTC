@@ -1,0 +1,15 @@
+Q: igual dif
+I: igual
+F: igual
+igual -> dif | 0,\/ZF 1,\/UF
+dif -> igual | \,F/\
+dif -> dif | 0,Z/ZZ 1,Z/\
+dif -> dif | 0,U/\ 1,U/UU
+---
+010101
+00000
+11111
+001
+01
+10
+1100
