@@ -1,3 +1,4 @@
+from pathlib import Path
 class Transicao:
     def __init__(self, valores, estado_dest):
         self.valores     = valores # Array de Pilha
@@ -23,8 +24,31 @@ class Alfabeto:
         self.I = estado_inicial #Nome do estado inicial (mesmo maluco do nome_estados)
         self.F = estado_final #Nome do estado final (mesmo maluco do nome_estados)
 
-input_file      = open("c:/Users/arthu/Desktop/TP FTC/TPIII-FTC/initP.txt", "r")
+class Alfabeto:
+    def __init__(self, alphabet): #construtor que recebe oos atributos que são vetores ou não
+        self.alphabet = alphabet
+
+    def checkIsInAlphabet(self, entry) -> bool:
+        isValid = True
+
+        #para cada caractere na string de teste checamos se ele esta no alfabeto
+        for char_entry in entry:
+            isIn = False
+            for char in self.alphabet:
+                if(char_entry == char):
+                    isIn = True
+
+            #caractere nao foi encontrado no alfbeto 
+            if(isIn == False):
+                isValid = False
+                break
+
+        return isValid
+
+
+input_file      = open(Path ("initP.txt"),"r")
 estados_input   = input_file.readline().replace("Q: ", "").replace("\n", "").split(" ")
+alfabeto        =  input_file.readline().replace("S: ", "").replace("\n", "") 
 estado_inicial  = input_file.readline().replace("I: ", "").replace("\n", "")
 
 if (estado_inicial not in estados_input):
@@ -167,8 +191,10 @@ else:
                         flag_erro = True
 
                     break
+        apd = Alfabeto(alphabet=alfabeto)
+        flag_chck = apd.checkIsInAlphabet(caso)
 
-        if(flag_erro):
+        if(flag_erro or flag_chck == False):
             print("X")
         else:
             print("OK")

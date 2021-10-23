@@ -1,4 +1,5 @@
 Q: igual dif
+S: 01
 I: igual
 F: igual
 igual -> dif | 0,\/ZF 1,\/UF
