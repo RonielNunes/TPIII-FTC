@@ -4,7 +4,7 @@ I: q0
 F: qf
 q0 -> q0 | a
 q0 -> q1 | a
-q0 -> q2 | /
+q0 -> q2 | \
 q1 -> qf | a
 q2 -> q3 | b
 qf -> qf | a b

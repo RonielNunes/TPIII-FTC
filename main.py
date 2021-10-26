@@ -187,7 +187,7 @@ def test_afn(input_file):
 
     # Inicia AFN
     #Verificação de labda
-    if('/' in alfabeto):
+    if('\\' in alfabeto):
         #Inválido caso haja lambda no alfabeto
         print(bcolors.FAIL + "Alfabeto invalido!\n" + bcolors.RESET)
     else:

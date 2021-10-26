@@ -187,7 +187,7 @@ class AFN(AFD_ALPHABET):
                             for transicao_index in range(len(estado.transicoes)):
                                 #tratamento de lambda
                                 for valor_index in range(len(estado.transicoes[transicao_index].valores)): #vetor para percorrer os valores que estão no vetor de valores
-                                    if(estado.transicoes[transicao_index].valores[valor_index] == '/'): #Verificação para ver se há lambdas na transicao
+                                    if(estado.transicoes[transicao_index].valores[valor_index] == '\\'): #Verificação para ver se há lambdas na transicao
                                         estado_atual = estado.transicoes[transicao_index].estado_dest #vai para o estado de destino com transição lambda
                                         break
                                 # Se encontra uma transição com o caracter do estado atual, troca de estado atual
