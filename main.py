@@ -352,9 +352,7 @@ def test_apd(input_file):
                 print(bcolors.OKGREEN + "OK" + bcolors.RESET)
 
 # Base utilizada: https://www.python-course.eu/turing_machine.php
-def testa_turing_machine(file_name):
-
-    input_file      = open(Path(file_name), "r")
+def testa_turing_machine(input_file):
 
     estadoDeAceitacao = []
     funcaoTransicao = {}
@@ -414,14 +412,14 @@ def testa_turing_machine(file_name):
 
         if (saida[0] == '<'):
             if (flag == 0):
-                print("OK", saida)
+                print(bcolors.OKGREEN + "OK" + bcolors.RESET, saida)
             else:
-                print("X", saida)
+                print(bcolors.FAIL + "X" + bcolors.RESET, saida)
         else:
             if (flag == 0):
-                print(f'OK <{saida}')
+                print(bcolors.OKGREEN + f'OK <{saida}' + bcolors.RESET)
             else:
-                print(f'X <{saida}')
+                print(bcolors.FAIL + f'X <{saida}' + bcolors.RESET)
 
 def multiple():
     print(bcolors.HEADER + " Múltiplos tipos\n" + bcolors.RESET)
@@ -450,7 +448,8 @@ def multiple():
             test_afd_multiple_alphabet(file_buffer)
         elif(file_type == 'APD'):
             test_apd(file_buffer)
-
+        elif(file_type == 'MT'):
+            testa_turing_machine(file_buffer)
 
         file_buffer.close()
 
@@ -463,8 +462,8 @@ def __main__():
 
     # testAPD('testes/initP.txt')
 
-    testa_turing_machine("testes/mt4.txt")
+    # testa_turing_machine("testes/mt4.txt")
 
-    # multiple()
+    multiple()
 
 __main__()
