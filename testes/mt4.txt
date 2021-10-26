@@ -1,0 +1,13 @@
+Q: A B C
+G: a
+I: A
+F: C
+A -> B | a/aD
+A -> C | _/_D
+B -> A | a/aD
+C -> C | _/_D
+---
+a
+aaaa
+aaaaaa
+aaa

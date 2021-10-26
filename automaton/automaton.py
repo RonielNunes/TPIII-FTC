@@ -151,7 +151,6 @@ class AFD_ALPHABET(AFD):
             else:
                 print(bcolors.OKGREEN + "OK" + bcolors.RESET)
 
-
 class AFN(AFD_ALPHABET):
     def __init__(self, estado_inicial, estados, casos_teste, alfabeto):
         super().__init__(estado_inicial, estados, casos_teste, alfabeto)

@@ -1,5 +1,7 @@
 from pathlib import Path
 from automaton.automaton import AFD_ALPHABET, Transicao, Estado, AFD, bcolors, AFN, ValoresPilha, Alfabeto
+from turingmachine import TuringMachine
+
 
 def testAFD(file_name):
     print(bcolors.UNDERLINE + bcolors.OKCYAN + "\nAFD\n" + bcolors.RESET)
@@ -349,6 +351,78 @@ def test_apd(input_file):
             else:
                 print(bcolors.OKGREEN + "OK" + bcolors.RESET)
 
+# Base utilizada: https://www.python-course.eu/turing_machine.php
+def testa_turing_machine(file_name):
+
+    input_file      = open(Path(file_name), "r")
+
+    estadoDeAceitacao = []
+    funcaoTransicao = {}
+
+    # leitura das 2 primeiras linhas - não utilizadas nessa máquina
+    input_file.readline()
+    input_file.readline()
+
+    estadoInicial = input_file.readline().replace("I: ", "").replace("\n", "")
+    estadoDeAceitacao.append(input_file.readline().replace("F: ", "").replace("\n", ""))    
+
+    estadoInicial = tuple(estadoInicial)
+    estadoDeAceitacao = tuple(estadoDeAceitacao)
+    estadoFinal =  set(estadoDeAceitacao)
+
+    # Percorre as transições do input criando um objeto Transicao
+    for linha in input_file:
+            transicao_input = linha.replace("\n", "").split(" -> ")
+
+            if (transicao_input[0] == "---"):
+                break
+
+            estado_origem   = transicao_input[0]
+            estado_destino  = transicao_input[1].split(" | ")[0]
+
+            simbolo_leitura = transicao_input[1].split(" | ")[1].split("/")[0]
+            simbolo_escrita = transicao_input[1].split(" | ")[1].split("/")[1][0]
+
+            direcao = transicao_input[1].split(" | ")[1].split("/")[1][1]
+
+            funcaoTransicaoAux = {(estado_origem, simbolo_leitura):(estado_destino, simbolo_escrita, direcao)}
+
+            funcaoTransicao.update(funcaoTransicaoAux)
+
+    # print(funcaoTransicao)
+
+    for linha in input_file:
+
+        cont = 0
+        entrada = linha.replace("\n","")
+        entrada += "_ " # indica final da palavra
+        flag = 0 # 0 - palavra aceita, 1 - palavra rejeitada
+
+        t = TuringMachine(entrada, estadoInicial = str(estadoInicial[0]), estadoFinal = estadoFinal, funcaoDeTransicao = funcaoTransicao)
+
+        # print("Input on Tape:\n" + t.getFita())
+
+        while not t.final():
+            # print(t.getFita())
+            t.passo()            
+            cont += 1
+            if(cont == 10 * (len(entrada))):
+                flag = 1
+                break
+
+        saida = str(t.getFita()).rstrip('_')
+
+        if (saida[0] == '<'):
+            if (flag == 0):
+                print("OK", saida)
+            else:
+                print("X", saida)
+        else:
+            if (flag == 0):
+                print(f'OK <{saida}')
+            else:
+                print(f'X <{saida}')
+
 def multiple():
     print(bcolors.HEADER + " Múltiplos tipos\n" + bcolors.RESET)
 
@@ -380,10 +454,6 @@ def multiple():
 
         file_buffer.close()
 
-    
-
-
-
 def __main__():
     # testAFD('testes/init.txt')
 
@@ -392,6 +462,9 @@ def __main__():
     # test_afn('testes/afn2.txt')
 
     # testAPD('testes/initP.txt')
-    multiple()
+
+    testa_turing_machine("testes/mt4.txt")
+
+    # multiple()
 
 __main__()
