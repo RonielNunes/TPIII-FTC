@@ -1,3 +1,4 @@
+@AFN
 Q: q0 q1 q2 q3
 S: abc
 I: q0 q1 q2
