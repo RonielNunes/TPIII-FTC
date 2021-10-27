@@ -156,7 +156,6 @@ def test_afn(input_file):
 
             estados.append(est)
 
-        transicoes      = []
         transicao_input = ""
 
         # Percorre as transições do input criando um objeto Transicao para cada e adicionando na lista de transições do estado origem da transição

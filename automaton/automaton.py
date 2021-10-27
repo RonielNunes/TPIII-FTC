@@ -57,16 +57,19 @@ class AFD:
                                 flag_erro = True
 
                         break # break para sair do for de estados e ir para o próximo valor (estava causando problema pois o estado_atual é alterado dentro do for)
-
-            # Se no final do caso o estado atual for um estado final, o caso deu certo, caso contrário deu errado
-            for estado in self.estados:
-                if (estado_atual == estado.nome):
-                    if (estado.flag_final):
-                        flag_erro = False
-                    else:
-                        flag_erro = True
-                    
+                if (flag_erro):
                     break
+            
+            if (not flag_erro):
+                # Se no final do caso o estado atual for um estado final, o caso deu certo, caso contrário deu errado
+                for estado in self.estados:
+                    if (estado_atual == estado.nome):
+                        if (estado.flag_final):
+                            flag_erro = False
+                        else:
+                            flag_erro = True
+
+                        break
 
             if(flag_erro):
                 print(bcolors.FAIL + "X" + bcolors.RESET)
@@ -135,16 +138,19 @@ class AFD_ALPHABET(AFD):
                                 flag_erro = True
 
                         break # break para sair do for de estados e ir para o próximo valor (estava causando problema pois o estado_atual é alterado dentro do for)
-
-            # Se no final do caso o estado atual for um estado final, o caso deu certo, caso contrário deu errado
-            for estado in self.estados:
-                if (estado_atual == estado.nome):
-                    if (estado.flag_final):
-                        flag_erro = False
-                    else:
-                        flag_erro = True
-                    
+                if (flag_erro):
                     break
+
+            if (not flag_erro):  
+                # Se no final do caso o estado atual for um estado final, o caso deu certo, caso contrário deu errado
+                for estado in self.estados:
+                    if (estado_atual == estado.nome):
+                        if (estado.flag_final):
+                            flag_erro = False
+                        else:
+                            flag_erro = True
+                        
+                        break
 
             if(flag_erro):
                 print(bcolors.FAIL + "X" + bcolors.RESET)
